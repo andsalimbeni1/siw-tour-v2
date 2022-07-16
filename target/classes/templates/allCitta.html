@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+<title>Tour SIW-2022</title>
+<style type="text/css">
+
+	.navbar-custom{
+		height:100px;
+	}
+
+    body {
+    background-image: url("/images/siw-tour.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Raleway', sans-serif;
+    }
+
+    .main-wrapper{
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.90);
+        width: 50vw;
+   	    box-sizing: border-box;
+    }
+
+    input{
+        box-sizing: border-box;
+    }
+    
+    a{
+    text-decoration: none;
+    font-size: larger;
+    margin: 2em;
+    color: black;
+    }
+
+    a:hover{
+    color: gray;
+    }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-custom navbar-expand-lg bg-light">
+  <div class="container-fluid">
+     <span class="navbar-brand mb-0 h1">Tour SIW-2022</span>
+        <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/default}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/allEscursioni}">Elenco escursioni</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" th:href="@{/allAttrazioni}">Elenco attrazioni</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" th:href="@{/allRegioni}">Elenco regioni</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/allGuide}">Elenco guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/profilo}">Profilo utente</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="p-4 main-wrapper my-5 m-auto rounded" align="center">
+	<h1 class="border-bottom border-dark pb-3">Elenco città</h1>
+	<ul class="list-group list-group-flush rounded my-4">
+	<li class="list-group-item fs-5" th:each="citta : ${cittas}">
+		<a href="cita.html"
+		th:href="@{'/citta'+'/'+${citta.id}}"
+		th:text="${citta.nome}">Città</a>
+	</li>
+	</ul>
+	<a class="btn btn-outline-dark my-2" role = "button" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" th:href="@{/admin/cittaForm}">Aggiungi città</a>
+
+</div>
+</body>
+</html>
