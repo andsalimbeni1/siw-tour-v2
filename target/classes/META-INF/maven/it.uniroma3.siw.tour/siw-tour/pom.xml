@@ -14,6 +14,7 @@
 	<name>siw-tour</name>
 	<description>Progetto Personale SIW 2022</description>
 	<properties>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
