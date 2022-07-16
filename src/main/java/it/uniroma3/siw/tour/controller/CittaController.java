@@ -56,7 +56,7 @@ public class CittaController {
 		model.addAttribute("listaRegioni", regioneService.getAllRegioni());
         model.addAttribute("attrazioni", attrazioneService.getAllAttrazioni());
         
-        return "/admin/cittaForm";
+        return "admin/cittaForm";
 	}
 	
 	@GetMapping("/admin/deleteCitta/{id}")

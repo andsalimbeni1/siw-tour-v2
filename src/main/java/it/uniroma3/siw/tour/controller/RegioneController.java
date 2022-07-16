@@ -37,7 +37,7 @@ public class RegioneController {
 	private String getattrazioneForm(Model model) {
 		model.addAttribute("regione", new Regione());
         
-        return "/admin/regioneForm";
+        return "admin/regioneForm";
 	}
 	
 	@GetMapping("/admin/deleteRegione/{id}")

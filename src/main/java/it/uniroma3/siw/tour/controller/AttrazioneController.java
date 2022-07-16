@@ -37,7 +37,7 @@ public class AttrazioneController {
 	private String getAttrazioneForm(Model model) {
 		model.addAttribute("attrazione", new Attrazione());
         
-        return "/admin/attrazioneForm";
+        return "admin/attrazioneForm";
 	}
 	
 	@GetMapping("/admin/deleteAttrazione/{id}")
