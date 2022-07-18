@@ -75,12 +75,19 @@
 </nav>
 <div class="p-4 main-wrapper my-5 m-auto rounded" align="center">
 <h1 class="border-bottom border-dark pb-3">Dettagli regione</h1>
-	<div th:if="${regione}" th:object="${regione}">
+	<div th:if="${regione}">
 		<div class="mt-4">
-			<strong class="fs-4">Nome: </strong><span class="fs-4" th:text="*{nome}">Nome</span>
+			<strong class="fs-4">Nome: </strong><span class="fs-4" th:text="${regione.nome}">Nome</span>
 		</div>
 		<div class="mt-4">
-			<strong class="fs-4">Mare: </strong><span class="fs-4" th:text="*{mare}">Mare</span>
+			<strong class="fs-4">Mare: </strong><span class="fs-4" th:text="${regione.mare}">Mare</span>
+		</div>
+		<div class="my-4">
+			<strong class="fs-4">Città visitabili in questa regione:</strong>
+			<ul class="list-group list-group-flush rounded mt-2">
+				<li class="list-group-item fs-5" th:each="citta : ${listaCitta}">
+				<span th:text="*{citta.nome}">Attrazione</span>
+			</ul>
 		</div>
 	</div>
 	<div th:unless="${regione}">Questa regione non esiste</div>

@@ -1,6 +1,8 @@
 package it.uniroma3.siw.tour.controller;
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.tour.model.Citta;
 import it.uniroma3.siw.tour.model.Regione;
+import it.uniroma3.siw.tour.service.CittaService;
 import it.uniroma3.siw.tour.service.RegioneService;
 
 @Controller
@@ -20,6 +24,9 @@ public class RegioneController {
 	
 	@Autowired
 	private RegioneService regioneService; 
+	
+	@Autowired
+	private CittaService cittaService; 
 
 	@GetMapping("/allRegioni")
 	private String allRegioni(Model model) {
@@ -29,7 +36,11 @@ public class RegioneController {
 	
 	@GetMapping("/regione/{id}")
 	private String regione(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("regione", this.regioneService.regioneById(id));
+		Regione regione = regioneService.regioneById(id);
+		List<Citta> listaCitta = cittaService.cittaByRegione(regione);
+		
+		model.addAttribute("regione", regione);
+		model.addAttribute("listaCitta", listaCitta);
 		return "regione";
 	}
 	

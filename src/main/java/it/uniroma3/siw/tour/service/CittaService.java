@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.tour.model.Citta;
+import it.uniroma3.siw.tour.model.Regione;
 import it.uniroma3.siw.tour.repository.CittaRepository;
 
 @Service
@@ -37,5 +38,9 @@ public class CittaService {
 	
 	public List<Citta> getAllCitta(){
 		return(List<Citta>) cittaRepository.findAll();
+	}
+	
+	public List<Citta> cittaByRegione(Regione regione){
+		return(List<Citta>) cittaRepository.findByRegione(regione);
 	}
 }
